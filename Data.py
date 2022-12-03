@@ -64,7 +64,7 @@ for i in range(len(distinct_emojis)):
     image_filename = emoji_unicode.strip("U+").lower() + ".png"
     nodes.loc[i] = [i, result, distinct_emojis[i], image_filename]
 
-pd.DataFrame(nodes).to_csv(".files/nodes.csv", encoding='utf-8', index=False)
+# pd.DataFrame(nodes).to_csv(".files/nodes.csv", encoding='utf-8', index=False)
 
 # Create edge list
 edges = pd.DataFrame(columns=['Source', 'Target'])

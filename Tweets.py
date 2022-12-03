@@ -7,7 +7,7 @@ print(until)
 
 # Configure
 c = twint.Config()
-# c.Limit = 100
+c.Limit = 100
 c.Search = "elonmusk twitter"
 c.Lang= "en"
 c.Store_csv = True

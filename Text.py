@@ -1,6 +1,6 @@
 import pandas as pd
 import emoji
-from nltk.sentiment import SentimentIntensityAnalyzer
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import statistics
 
 # Keep tweets only
@@ -47,39 +47,65 @@ for index, row in new_df.iterrows():
 # Create a table with tweets containing 😂 and calculate the sentiment score for each tweet
 tears_of_joy_df = text_df[text_df['Emoji'] == '😂']
 tears_of_joy_compound_score = []  # -1 means extremely negative, and +1 means extremely positive
+tears_of_joy_positive_score = []
+tears_of_joy_negative_score = []
+tears_of_joy_neutral_score = []
 
 tears_of_joy_df = tears_of_joy_df.reset_index()
 for index, row in tears_of_joy_df.iterrows():
     sia = SentimentIntensityAnalyzer()
     ss = sia.polarity_scores(row['Text'])
     tears_of_joy_compound_score.append(ss.get("compound"))
+    tears_of_joy_positive_score.append(ss.get("pos"))
+    tears_of_joy_negative_score.append(ss.get("neg"))
+    tears_of_joy_neutral_score.append(ss.get("neu"))
 
 print(" Number of tweets containing 😂: " + str(len(tears_of_joy_df.index)))
 print(" 😂 score: " + str(statistics.mean(tears_of_joy_compound_score)))
+print(" 😂 positive score: " + str(statistics.mean(tears_of_joy_positive_score)))
+print(" 😂 negative score: " + str(statistics.mean(tears_of_joy_negative_score)))
+print(" 😂 neutral score: " + str(statistics.mean(tears_of_joy_neutral_score)))
 
 # Create a table with tweets containing 🤣 and calculate the sentiment score for each tweet
 rolling_laughing_df = text_df[text_df['Emoji'] == '🤣']
 rolling_laughing_compound_score = []
+rolling_laughing_positive_score = []
+rolling_laughing_negative_score = []
+rolling_laughing_neutral_score = []
 
 rolling_laughing_df = rolling_laughing_df.reset_index()
 for index, row in rolling_laughing_df.iterrows():
     sia = SentimentIntensityAnalyzer()
     ss = sia.polarity_scores(row['Text'])
     rolling_laughing_compound_score.append(ss.get("compound"))
+    rolling_laughing_positive_score.append(ss.get("pos"))
+    rolling_laughing_negative_score.append(ss.get("neg"))
+    rolling_laughing_neutral_score.append(ss.get("neu"))
 
 print(" Number of tweets containing 🤣: " + str(len(rolling_laughing_df.index)))
 print(" 🤣 score: " + str(statistics.mean(rolling_laughing_compound_score)))
+print(" 🤣 positive score: " + str(statistics.mean(rolling_laughing_positive_score)))
+print(" 🤣 negative score: " + str(statistics.mean(rolling_laughing_negative_score)))
+print(" 🤣 neutral score: " + str(statistics.mean(rolling_laughing_neutral_score)))
 
 # Create a table with tweets containing 🤔 and calculate the sentiment score for each tweet
 thinking_df = text_df[text_df['Emoji'] == '🤔']
 thinking_compound_score = []
+thinking_positive_score = []
+thinking_negative_score = []
+thinking_neutral_score = []
 
 thinking_df = thinking_df.reset_index()
 for index, row in thinking_df.iterrows():
     sia = SentimentIntensityAnalyzer()
     ss = sia.polarity_scores(row['Text'])
     thinking_compound_score.append(ss.get("compound"))
+    thinking_positive_score.append(ss.get("pos"))
+    thinking_negative_score.append(ss.get("neg"))
+    thinking_neutral_score.append(ss.get("neu"))
 
 print(" Number of tweets containing 🤔: " + str(len(thinking_df.index)))
-print(" 🤔 pos score: " + str(statistics.mean(thinking_compound_score)))
-
+print(" 🤔 score: " + str(statistics.mean(thinking_compound_score)))
+print(" 🤔 positive score: " + str(statistics.mean(thinking_positive_score)))
+print(" 🤔 negative score: " + str(statistics.mean(thinking_negative_score)))
+print(" 🤔 neutral score: " + str(statistics.mean(thinking_neutral_score)))
